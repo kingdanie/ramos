@@ -1,7 +1,9 @@
 'use client'
 import Image from "next/image";
 import Header from "./component/header";
-import { Play, Nodes, Bolt }  from "./component/icon";
+import Bolt  from "./component/bolt";
+import Play   from "./component/play";
+import Nodes  from "./component/nodes";
 
 
 
