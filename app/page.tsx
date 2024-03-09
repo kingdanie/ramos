@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Header from "./component/header";
-import { Play, Bolt, Nodes } from "./component/icon";
+import Icon from "./component/icon";
 
 
 export default function Home() {
@@ -14,8 +14,8 @@ export default function Home() {
           <div className="col-span-3">
             <div className="ml-16 flex gap-x-5 items-center ">
               <div className="flex">
-                <div className="bg-[#f4f4f4] p-6 size-20  flex items-center justify-center rounded-full"><Bolt /></div>
-                <div className="bg-primary -ml-3 p-6 size-20 flex items-center justify-center rounded-full"><Nodes /></div>
+                <div className="bg-[#f4f4f4] p-6 size-20  flex items-center justify-center rounded-full"><Icon.Bolt /></div>
+                <div className="bg-primary -ml-3 p-6 size-20 flex items-center justify-center rounded-full"><Icon.Nodes /></div>
               </div>
               <h2 className="text-8xl"> <span></span>Analytics </h2>
             </div>
@@ -24,7 +24,7 @@ export default function Home() {
           </div>
           <div className="col-span-2 relative h-full bg-accent min-w-[40%] p-7 rounded-2xl" style={{background: "url('/laptop-and-analytics2.png')", backgroundSize: "cover"}}>
             <div className="absolute -top-3 -left-4 size-9 p-3 bg-primary shadow-xl flex items-center justify-center rounded-full">
-              <Play />
+              <Icon.Play />
             </div>
           </div>
         </div>
