@@ -52,4 +52,4 @@ const Nodes = () => {
 
 
 
-export {Play, Bolt, Nodes};
+export default {Play, Bolt, Nodes};
