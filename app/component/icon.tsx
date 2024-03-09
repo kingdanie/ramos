@@ -27,7 +27,6 @@ const Bolt = () => (
 
 
 const Nodes = () => (
-  <>
 
         <svg width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -38,10 +37,9 @@ const Nodes = () => (
         </path>
         </g>
         </svg>   
-  </>
 );
 
 
-const Icon = { Play, Bolt, Nodes };
+export { Play, Bolt, Nodes };
 
-export default Icon;
+
