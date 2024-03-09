@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation';
 import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+
 const navLinks = [ 
 { href: "#", name: "Dashboard"},
 { href: "#", name: "Reports"},
@@ -16,8 +18,23 @@ function header() {
     const router = usePathname();
 
   return (
-    <div className='flex justify-between items-center bg-blk w-full rounded-2xl p-2'>
-        <div> 
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{
+      ease: "easeInOut",
+      duration: 0.5,
+      delay: 0.1,
+    }} className='flex justify-between items-center bg-blk w-full rounded-2xl p-2'>
+        <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  ease: "easeInOut",
+                  duration: 0.7,
+                  delay: 0.3,
+                }}
+        > 
              <Link href={'/'}>
                 <Image
                 className="relative"
@@ -28,8 +45,17 @@ function header() {
                 priority
                 />
              </Link>  
-        </div>
-        <div className='rounded-2xl flex gap-x-10 justify-center bg-[#252525] py-3 px-6'>
+        </motion.div>
+        <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+                ease: "easeInOut",
+                duration: 0.7,
+                delay: 0.6,
+            }}
+            className='rounded-2xl flex gap-x-10 justify-center bg-[#252525] py-3 px-6'
+        >
             {navLinks.map(link => (
                 <div key={link.name}>
                     <a 
@@ -41,9 +67,19 @@ function header() {
                     </a>
                 </div>
             ))}
-        </div>
-        <div><button className='bg-white rounded-2xl py-3 px-5'>Sign Up</button></div>
-    </div>
+        </motion.div>
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+                ease: "easeInOut",
+                duration: 0.7,
+                delay: 0.7,
+            }}
+        >
+            <button className='bg-white rounded-2xl py-3 px-5'>Sign Up</button>
+        </motion.div>
+    </motion.div>
   )
 }
 
