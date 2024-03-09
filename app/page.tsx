@@ -30,7 +30,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-5 !mt-3">
           <div className="col-span-1"></div>
-        <div className="col-span-4 justify-end flex items-center flex gap-x-3">
+        <div className="col-span-4 justify-end flex items-center gap-x-3">
           <span className="text-8xl">shape</span> 
           <div className="bg-accent size-20 p-2 rounded-full flex items-center justify-center">       
             <Image
@@ -168,15 +168,27 @@ export default function Home() {
           <h2 className="text-9xl">Maximize <span className="text-[#b1b1b1]">efficiency</span> <br/ > With our initiative</h2>
         </div>
         <div className="flex justify-between">
-          <div className="flex">
-              <div className="p-5 w-32 h-32 rounded-full bg-wht z-10"></div>
+          <div className="grid grid-cols-2">
+              <div className="p-5 w-32 h-32 rounded-full bg-wht z-10 flex items-center justify-center">
+                <Image
+                  className="relative"
+                  src="/energy.png"
+                  alt=""
+                  width={100}
+                  height={50}
+                  priority
+                />
+              </div>
               <div className="-ml-[10px] p-5 w-32 h-32 flex flex-col items-center justify-center rounded-full bg-accent">
                 <p className="text-2xl">45%</p>
                 <p className="text-sm text-center">system grow <br /> faster</p>
               </div>
           </div>
-          <div className="bg-accent py-3 rounded-[4rem] max-w-[30vw] overflow-auto"> <span className="text-9xl text-ellipsis">analytics service</span></div>
-
+          <div className="bg-accent py-1 rounded-[3rem] max-h-[110px] max-w-[40%] overflow-hidden">
+              <div className="overflow-hidden">
+                  <span className="text-8xl whitespace-nowrap inline-block animate-marquee">analytics service</span>
+              </div>
+          </div>
         </div>
 
         <hr />
