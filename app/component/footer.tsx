@@ -11,7 +11,7 @@ const footerLinks = [
     { href: "#", name: "Pricing"},
     { href: "#", name: "Contacts"},
     ]
-function footer() {
+function Footer() {
     const router = usePathname();
   return (
     <div className='bg-blk p-10 w-full space-y-10'>
@@ -84,4 +84,4 @@ function footer() {
   )
 }
 
-export default footer
+export default Footer

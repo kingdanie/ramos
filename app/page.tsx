@@ -196,7 +196,7 @@ export default function Home() {
         <div className="flex justify-between">
           <p>
             Explore traffic sources, page behavior, conversions and more to gain deep insight <br />
-            into your audience. With us, your business doesn't just adapt - it evolves.
+            into your audience. With us, your business doesn&apos;t just adapt - it evolves.
           </p>
           <div className="space-x-3">
             <button className="bg-wht  text-sm rounded-xl py-3 px-8">Request a demo</button>

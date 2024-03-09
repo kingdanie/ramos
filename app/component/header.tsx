@@ -14,7 +14,7 @@ const navLinks = [
 { href: "#", name: "Settings"},
 ]
 
-function header() {
+function Header() {
     const router = usePathname();
 
   return (
@@ -81,4 +81,4 @@ function header() {
   )
 }
 
-export default header
+export default Header
