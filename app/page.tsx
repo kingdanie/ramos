@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Header from "./component/header";
-import {Play, Nodes, Bolt } from "./component/icon";
+import { Play }  from "./component/icon";
+import { Nodes }  from "./component/icon";
+import { Bolt }  from "./component/icon";
 
 
 export default function Home() {
