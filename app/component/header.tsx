@@ -23,8 +23,7 @@ function header() {
     animate={{ opacity: 1, y: 0 }}
     transition={{
       ease: "easeInOut",
-      duration: 0.5,
-      delay: 0.1,
+      duration: 0.3,
     }} className='flex justify-between items-center bg-blk w-full rounded-2xl p-2'>
         <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -32,7 +31,6 @@ function header() {
                 transition={{
                   ease: "easeInOut",
                   duration: 0.7,
-                  delay: 0.3,
                 }}
         > 
              <Link href={'/'}>
