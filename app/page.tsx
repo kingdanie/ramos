@@ -4,10 +4,46 @@ import Header from "./component/header";
 import Bolt  from "./component/bolt";
 import Play   from "./component/play";
 import Nodes  from "./component/nodes";
+import StackIcon from "./component/stackIcon";
+import UpArrow from "./component/upArrow";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+import { useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect } from "react";
 
 
 export default function Home() {
+
+  const strategyRef = useRef(null);
+  // const isSkillRefInView = useInView(skillRef, {once:true});
+  const isSkillRefInView = useInView(strategyRef, { margin: "-100px" });
+
+  
+  const count = useMotionValue(20);
+  const vistorsCount = useMotionValue(17);
+  const statisticsCount = useMotionValue(20);
+  const analyticsCountRef = useRef(null);
+  const analyticsCountInveiw = useInView(analyticsCountRef, {once: true});
+  const rounded = useTransform(count, Math.round);
+  const roundedVisitors = useTransform(vistorsCount, Math.round);
+  const roundedStatistics = useTransform(statisticsCount, Math.round);
+
+  const animation = isSkillRefInView ? animate(count, 43, { duration: 2 }) : {};
+  const visitorsAnimation = isSkillRefInView ? animate(vistorsCount, 56, { duration: 2 }) : {};
+  const statisticsAnimation = isSkillRefInView ? animate(statisticsCount, 60, { duration: 3 }) : {};
+
+  // useEffect(() => {
+  //   const animation = animate(count, 42, { duration: 5 });
+
+  //   return animation.stop; 
+  // }, []);
+
+
+  
+
+  
   return (
     <>
         <main className="flex min-h-screen flex-col items-center justify-between pt-3 p-5">
@@ -51,12 +87,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-wht w-full p-5 rounded-[5rem] m-auto px-16 py-20">
+      <section className="bg-wht w-full p-5 rounded-[5rem] m-auto px-16 py-20" ref={strategyRef}>
+
         <div className="space-y-12  max-w-[85%] mx-auto">
 
         <div className="flex items-center justify-between">
-          <h4 className="text-5xl w-[45%]">Your key to strategic success through analytics 
-          </h4>
+          <motion.h4 
+            initial={{ y: "200px" }}
+            animate={isSkillRefInView ? { y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="text-5xl w-[50%]"
+          >
+              Your key to strategic success through analytics 
+          </motion.h4>
 
           <p className="w-[25%]">
             Ready for exciting, instanenous <br /> all-accessible insights in real time?
@@ -85,7 +128,7 @@ export default function Home() {
               <div className="space-y-5">
                 <div className="flex gap-x-3">
                   <div className="flex gap-x-2 items-center">
-                    <div className="p-2 bg-primary w-10 h-10 rounded-full"></div>
+                    <div className="flex items-center p-3 bg-primary w-10 h-10 rounded-full"><StackIcon color="#fff" /></div>
                     <div>
                       <span className="text-xs text-[#b1b1b1]">Total profit</span>
                       <div>
@@ -95,25 +138,31 @@ export default function Home() {
                   </div>
                   <div className="bg-wht rounded-2xl min-w-[33%] flex flex-col py-3 px-5 gap-y-2">
                     <span className="text-xs">Visitors</span>
-                    <div className="bg-accent rounded">
-                      <div className="w-[30%] bg-green-600 p-0.5 rounded"></div>
+                    <div className="bg-[#e3e3e3] rounded">
+                      <div className="w-[30%] bg-green-600 p-[0.09rem] rounded"></div>
                     </div>
 
-                    <div className="flex">
-                      <span className="text-2xl">56k</span>
-                      <span className="text-[9px] self-start text-green-500">+14%</span>
+                    <div className="flex gap-x-1 w-full">
+                      {/* <span className="text-2xl">56k</span> */}
+                      <div><motion.span whileInView='true' animate={visitorsAnimation} className="text-2xl">{roundedVisitors}</motion.span><span className="text-2xl">k</span></div>
+                      <div className="flex items-center self-start gap-x-1">
+                        <div className="w-3 h-3 p-[0.175rem] bg-green-500 rounded-full flex items-center"><UpArrow /></div>
+                        <span className="text-[6px]  text-green-500">+14%</span>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col gap-y-3 border border-[#e6e4e4] rounded-2xl  p-3">
-                  <p className="text-xs">Visit Statics</p>
+                  <p className="text-xs">Visit statistics</p>
 
                   <div className="flex w-full">
 
                   <div className="bg-primary text-white rounded-2xl w-[40%] flex py-3 px-3 gap-x-2">
-                    <div className="flex flex-col gap-y-3">
-                      <span className="text-xs">rate</span>
-                      <span className="text-2xl">+58%</span>
+                    <div className="flex flex-col gap-y-2">
+                      <span className="text-[0.5rem]">Rate</span>
+                      {/* <span className="text-lg">58   %</span> */}
+                      <div><motion.span whileInView='true' animate={statisticsAnimation} className="text-md">{roundedStatistics}</motion.span><span className="text-md">%</span></div>
+
                     </div>
 
                     <div className="flex w-[30%]">
@@ -127,16 +176,43 @@ export default function Home() {
 
             </div>
           </div>
-          <div className="w-[40%] rounded-2xl bg-blk text-white flex flex-col p-8 justify-between items-center shadow-lg">
-            <div className="flex gap-x-3 justify-center">
-              <div className="flex border rounded-3xl p-5 border-gray-800 w-1/2">
-                <span className="w-12 h-12 rounded-full p-1 bg-wht">1</span>
-                <span className="w-12 h-12 rounded-full p-1 bg-wht">1</span>
+          <div ref={analyticsCountRef} className="w-[40%] rounded-2xl bg-blk text-white flex flex-col p-8 justify-between items-center shadow-lg">
+            <div className="flex gap-x-3 justify-center w-full max-w-[75%]">
+              <div className="flex flex-col items-center justify-between h-full content-between border rounded-3xl p-5 border-gray-800 w-1/2 self-end">
+              <StackIcon color="#ffd027" />
+              <div className="flex">
+                <span className="w-8 h-8 border border-black rounded-full bg-wht">
+                  {/* <img className="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80" alt="" /> */}
+                  <Image
+                      className="w-8 h-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80"
+                      alt=""
+                      width={32}
+                      height={32}
+                      priority
+                    />
+                  </span>
+                <span className="w-8 h-8 border border-black -ml-1 rounded-full bg-wht">
+                  {/* <img className="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80" alt="" /> */}
+                  <Image
+                      className="w-8 h-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80"
+                      alt=""
+                      width={32}
+                      height={32}
+                      priority
+                    />
+                  </span>
+              </div>
               </div>
               <div className="flex flex-col border rounded-3xl p-5 border-gray-800 w-1/2">
-                <p className="text-xs">Transactions</p>
-                <div className="self-end"><span className="text-[9px] self-start text-green-500">+14%</span></div>
-                <span className="text-5xl">56k</span>
+                <p className="text-[0.5rem] pb-2">Transactions</p>
+                <div className="flex items-center self-end gap-x-1">
+                        <div className="w-3 h-3 p-[2px] bg-green-500 rounded-full flex items-center"><UpArrow /></div>
+                        <span className="text-[5px] text-green-500">+14%</span>                
+                </div>
+                {/* <span className="text-5xl">56k</span> */}
+                <div><motion.span whileInView='true' animate={animation} className="text-4xl">{rounded}</motion.span><span className="text-4xl"> K</span></div>
               </div>
             </div>
 
@@ -167,9 +243,19 @@ export default function Home() {
 
       </section>
 
-      <section className="w-full p-5 rounded-[5rem] m-auto space-y-12 px-16 py-20 max-w-[85%] mx-auto">
-        <div>
-          <h2 className="text-9xl">Maximize <span className="text-[#b1b1b1]">efficiency</span> <br/ > With our initiative</h2>
+      <motion.section
+        className="w-full px-2 rounded-[5rem] m-auto space-y-12 py-20 max-w-[90%] mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+        variants={{
+          visible: { opacity: 1, scale: 1 },
+          hidden: { opacity: 0, scale: 0 }
+        }}
+    >
+        <div className="w-full">
+          <h2 className="text-8xl">Maximize <span className="text-[#b1b1b1]">efficiency</span> <br/ > With our initiative</h2>
         </div>
         <div className="flex justify-between">
           <div className="grid grid-cols-2">
@@ -207,7 +293,7 @@ export default function Home() {
             <button className="bg-primary text-white text-sm rounded-xl py-3 px-8">Start for free</button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <section className="bg-wht w-full relative rounded-[5rem] m-auto pl-16 pt-20 pb-20">
         <div className="space-y-12 mx-auto relative">
@@ -229,24 +315,24 @@ export default function Home() {
             </div>
             <div className="col-span-2 p-3 min-h-[1000px] z-10" style={{backgroundImage: "url('/devices.png')", backgroundSize: "contain", backgroundRepeat: 'no-repeat'}}></div>
           </div>
-          <div className="absolute -bottom-56 text-[25dvw] font-bold w-full text-primary z-0" style={{fontStretch: "semi-expanded"}}>
+          <div className="absolute -bottom-32 text-[25dvw] font-bold w-full text-primary z-0" style={{fontStretch: "semi-expanded"}}>
             Ramos
           </div>
         </div>
       </section>
 
-      <section className="w-full p-5 rounded-[5rem] m-auto space-y-12 px-16 py-20 max-w-[85%] mx-auto">
-      <h2 className="text-9xl">We give you full  <br/ > <span className="text-[#b1b1b1]">control</span> over your data</h2>
+      <section className="w-full p-2 rounded-[5rem] m-auto space-y-12 px-16 py-20 max-w-[90%] mx-auto">
+      <h2 className="text-8xl">We give you full  <br/ > <span className="text-[#b1b1b1]">control</span> over your data</h2>
       <div className="w-full grid grid-cols-2 gap-x-3">
         <div className="px-20 py-5 bg-wht rounded-2xl  border border-gray-200 flex flex-col gap-y-10 items-center w-full">
           <div className="flex w-full mx-auto items-center justify-center">
             <div className="w-[45%] h-[250px] bg-white rounded-2xl py-5 px-10 relative space-y-5 shadow text-center">
-              <p>Conversion rate</p>
+              <p className="text-xs">Conversion rate</p>
               <div className="relative bg-accent w-full rounded-xl p-5 text-center">
                 <div className="absolute w-6 h-6 rounded-full p-3 bg-wht flex items-center -top-[10px] -left-[10px]"></div>
                 <span className="text-6xl">2,3%</span>
               </div>
-              <p>percentage of visitors</p>
+              <p className="text-[9px] text-[#b1b1b1]">Percentage of webiste visitors</p>
 
             </div>
             <div className="w-[45%] h-[250px] bg-white rounded-2xl p-5 shadow mt-16 -ml-5 z-10 flex flex-col justify-between">
@@ -257,25 +343,47 @@ export default function Home() {
               <div className="w-full grid grid-cols-3 gap-x-0.5">
                 <div className="p-0.5 bg-green-400 rounded"></div>
                 <div className="p-0.5 bg-yellow-400 rounded"></div>
-                <div className="p-0.5 bg-green-400 rounded"></div>
+                <div className="p-0.5 bg-purple-400 rounded"></div>
               </div>
               <div className="space-y-3">
+
                 <div className="flex items-center justify-between">
-                  <span className="w-8 h-8 rounded-full p-1 bg-accent"></span>
-                  <span className="text-xs">Min price</span>
+                  <span className="w-8 h-8 rounded-full flex items-center bg-accent">
+                    {/* <img className="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80" alt="" /> */}
+                    <Image
+                      className="w-8 h-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80"
+                      alt=""
+                      width={32}
+                      height={32}
+                      priority
+                    />
+                    </span>
+
+                  <span className="text-[9px] text-[#b1b1b1]">Min price</span>
                   <span className="text-xs">1,200 $</span>
 
                 </div>
+
                 <div className="flex items-center justify-between">
-                  <span className="w-8 h-8 rounded-full p-1 bg-accent"></span>
-                  <span className="text-xs">Min price</span>
-                  <span className="text-xs">1,200 $</span>
+                  <span className="w-8 h-8 rounded-full flex items-center bg-accent">
+                    <Image
+                      className="w-8 h-8 rounded-full"
+                      src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=8&amp;w=1024&amp;h=1024&amp;q=80"
+                      alt=""
+                      width={32}
+                      height={32}
+                      priority
+                    />
+                  </span>
+                  <span className="text-[9px] text-[#b1b1b1]">Min price</span>
+                  <span className="text-xs">2,320 $</span>
 
                 </div>
               </div>
               <hr />
               <div className="flex justify-between text-xs">
-                <span>Engagement rate</span>
+                <span className="text-[9px] text-[#b1b1b1]">Engagement rate</span>
                 <span>47,84%</span>
               </div>
 
@@ -335,15 +443,14 @@ export default function Home() {
 
       <section className="w-full flex flex-col  items-center justify-center p-5 m-auto space-y-6 px-16 pt-20 pb-32">
         <div className="bg-primary p-5 rounded-3xl cursor-pointer shadow-2xl">
-        <Image
-          className="relative"
-          src="/ramos-logo-short.png"
-          alt="Ramos short Logo"
-          width={35}
-          height={35}
-          priority
-        />
-
+          <Image
+            className="relative"
+            src="/ramos-logo-short.png"
+            alt="Ramos short Logo"
+            width={35}
+            height={35}
+            priority
+          />
         </div>
         <h4 className="text-7xl">
           Get Started 
