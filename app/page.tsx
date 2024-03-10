@@ -49,7 +49,7 @@ export default function Home() {
         <main className="flex min-h-screen flex-col items-center justify-between pt-3 p-5">
       <Header />
 
-      <section className="w-full p-5 m-auto space-y-12 px-16 py-48 max-w-[80%]">
+      <section className="w-full p-5 m-auto space-y-12 px-16 py-48 max-w-[90%]">
         <div className="grid grid-cols-5 gap-x-5">
           <div className="col-span-3">
             <div className="ml-16 flex gap-x-5 items-center ">
