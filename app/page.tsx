@@ -6,6 +6,7 @@ import Play   from "./component/play";
 import Nodes  from "./component/nodes";
 import StackIcon from "./component/stackIcon";
 import UpArrow from "./component/upArrow";
+import AnimatedTitle from './component/staggeringTitle'
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -26,6 +27,8 @@ export default function Home() {
   const statisticsCount = useMotionValue(20);
   const analyticsCountRef = useRef(null);
   const analyticsCountInveiw = useInView(analyticsCountRef, {once: true});
+  const contactRef = useRef(null);
+  const contactInveiw = useInView(contactRef);
   const rounded = useTransform(count, Math.round);
   const roundedVisitors = useTransform(vistorsCount, Math.round);
   const roundedStatistics = useTransform(statisticsCount, Math.round);
@@ -86,6 +89,7 @@ export default function Home() {
         </div>
         </div>
       </section>
+
 
       <section className="bg-wht w-full p-5 rounded-[5rem] m-auto px-16 py-20" ref={strategyRef}>
 
@@ -245,21 +249,33 @@ export default function Home() {
 
       <motion.section
         className="w-full px-2 rounded-[5rem] m-auto space-y-12 py-20 max-w-[90%] mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        transition={{ duration: 0.3 }}
-        variants={{
-          visible: { opacity: 1, scale: 1 },
-          hidden: { opacity: 0, scale: 0 }
-        }}
+        // initial="hidden"
+        // whileInView="visible"
+        // viewport={{ once: true }}
+        // transition={{ duration: 0.3 }}
+        // variants={{
+        //   visible: { opacity: 1, scale: 1 },
+        //   hidden: { opacity: 0, scale: 0 }
+        // }}
     >
         <div className="w-full">
-          <h2 className="text-8xl">Maximize <span className="text-[#b1b1b1]">efficiency</span> <br/ > With our initiative</h2>
+        <AnimatedTitle text="Maximize efficiency" alt />
+        <AnimatedTitle text="With our inituitive" />
+
+          {/* <h2 className="text-8xl">Maximize <span className="text-[#b1b1b1]">efficiency</span> <br/ > With our initiative</h2> */}
         </div>
         <div className="flex justify-between">
           <div className="grid grid-cols-2">
-              <div className="p-5 w-32 h-32 rounded-full bg-wht z-10 flex items-center justify-center">
+              <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: 0.5 }}
+                        variants={{
+                          visible: { opacity: 1, scale: 1 },
+                          hidden: { opacity: 0, scale: 0 }
+                        }}
+                className="p-5 w-32 h-32 rounded-full bg-wht z-10 flex items-center justify-center">
                 <Image
                   className="relative"
                   src="/energy.png"
@@ -268,17 +284,36 @@ export default function Home() {
                   height={50}
                   priority
                 />
-              </div>
-              <div className="-ml-[10px] p-5 w-32 h-32 flex flex-col items-center justify-center rounded-full bg-accent">
+              </motion.div>
+              <motion.div 
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: 0.3 }}
+                      variants={{
+                        visible: { opacity: 1, scale: 1 },
+                        hidden: { opacity: 0, scale: 0 }
+                      }}
+                className="-ml-[10px] p-5 w-32 h-32 flex flex-col items-center justify-center rounded-full bg-accent">
                 <p className="text-2xl">45%</p>
                 <p className="text-sm text-center">system grow <br /> faster</p>
-              </div>
+              </motion.div>
           </div>
-          <div className="bg-accent py-1 rounded-[3rem] max-h-[110px] max-w-[40%] overflow-hidden">
+          <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  variants={{
+                    visible: { opacity: 1, scale: 1 },
+                    hidden: { opacity: 0, scale: 0 }
+                  }} 
+          
+            className="bg-accent py-1 rounded-[3rem] max-h-[110px] max-w-[40%] overflow-hidden">
               <div className="overflow-hidden">
                   <span className="text-8xl whitespace-nowrap inline-block animate-marquee">analytics service</span>
               </div>
-          </div>
+          </motion.div>
         </div>
 
         <hr />
@@ -288,10 +323,43 @@ export default function Home() {
             Explore traffic sources, page behavior, conversions and more to gain deep insight <br />
             into your audience. With us, your business doesn&apos;t just adapt - it evolves.
           </p>
-          <div className="space-x-3">
-            <button className="bg-wht  text-sm rounded-xl py-3 px-8">Request a demo</button>
-            <button className="bg-primary text-white text-sm rounded-xl py-3 px-8">Start for free</button>
-          </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delayChildren: 0.25,
+              staggerChildren: 0.05, }}
+            variants={{
+              visible: { opacity: 1, scale: 1 },
+              hidden: { opacity: 0, scale: 0 }
+            }} 
+            className="space-x-3"
+          >
+            <motion.button 
+              variants={{
+                visible: { opacity: 1, scale: 1, transition: {
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }, },
+                hidden: { opacity: 0, scale: 0 }
+              }} 
+
+              className="bg-wht text-sm rounded-xl py-3 px-8">
+                Request a demo
+            </motion.button>
+            <motion.button 
+              variants={{
+                visible: { opacity: 1, scale: 1, transition: {
+                  duration: 0.3,
+                  delay: 0.6,
+                  ease: "easeInOut",
+                }, },
+                hidden: { opacity: 0, scale: 0 }
+              }} 
+              className="bg-primary text-white text-sm rounded-xl py-3 px-8">
+                Start for free
+            </motion.button>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -322,7 +390,12 @@ export default function Home() {
       </section>
 
       <section className="w-full p-2 rounded-[5rem] m-auto space-y-12 px-16 py-20 max-w-[90%] mx-auto">
-      <h2 className="text-8xl">We give you full  <br/ > <span className="text-[#b1b1b1]">control</span> over your data</h2>
+      {/* <h2 className="text-8xl">We give you full  <br/ > <span className="text-[#b1b1b1]">control</span> over your data</h2> */}
+      <div>
+        <AnimatedTitle text="We give you full" />
+        <AnimatedTitle text="control over your data" />
+      </div>
+
       <div className="w-full grid grid-cols-2 gap-x-3">
         <div className="px-20 py-5 bg-wht rounded-2xl  border border-gray-200 flex flex-col gap-y-10 items-center w-full">
           <div className="flex w-full mx-auto items-center justify-center">
@@ -441,8 +514,28 @@ export default function Home() {
       </div>
       </section>
 
-      <section className="w-full flex flex-col  items-center justify-center p-5 m-auto space-y-6 px-16 pt-20 pb-32">
-        <div className="bg-primary p-5 rounded-3xl cursor-pointer shadow-2xl">
+      <motion.section
+        ref={contactRef}
+      
+        // initial="hidden"
+        // whileInView="visible"
+        // viewport={{ once: true }}
+        // transition={{ duration: 0.3 }}
+        // variants={{
+        //   visible: { opacity: 1, scale: 1, transition: { staggerChildren: 4, delayChildren: 10 }
+        // },
+        //   hidden: { opacity: 0, scale: 0 }
+        // }}
+      className="w-full flex flex-col  items-center justify-center p-5 m-auto space-y-6 px-16 pt-20 pb-32">
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.5 }}
+          animate={contactInveiw ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.5 }}
+          transition={{ 
+              ease: "easeInOut",
+              duration: 1,
+          }}
+          className="bg-primary p-5 rounded-3xl cursor-pointer shadow-2xl"
+        >
           <Image
             className="relative"
             src="/ramos-logo-short.png"
@@ -451,7 +544,7 @@ export default function Home() {
             height={35}
             priority
           />
-        </div>
+        </motion.div>
         <h4 className="text-7xl">
           Get Started 
         </h4>
@@ -460,10 +553,20 @@ export default function Home() {
 
         <div className="space-x-3">
             <button className="bg-wht  text-sm rounded-xl py-3 px-8">Request a demo</button>
-            <button className="bg-primary text-white text-sm rounded-xl py-3 px-8">Start for free</button>
+            <motion.button 
+                            initial={{ scale: 0 }}
+                            animate={contactInveiw ? { scale: 1 } : { scale: 0 }}
+                            transition={{ 
+                                ease: "easeInOut",
+                                duration: 1,
+                                delay: 0.4, 
+                            }}
+              className="bg-primary text-white text-sm rounded-xl py-3 px-8">
+                Start for free
+            </motion.button>
           </div>
 
-      </section>
+      </motion.section>
 
 
       {/* <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
