@@ -172,8 +172,10 @@ export default function Home() {
 
         <div className="flex gap-x-5">
           <div className="w-[60%] rounded-3xl bg-white min-h-[300px] pt-8 flex gap-x-10  pr-0 shadow-lg">
-            <div className="pl-10 max-w-[40%]">
+            <div className="pl-10 pb-10 max-w-[40%] flex flex-col justify-between">
+              <div>
               <button className="bg-accent rounded-xl p-3 text-xs ">Setting up reports</button>
+              </div>
 
               <div className="pt-16">
               <h6 className="text-xl">Fast and easy access</h6>
@@ -222,7 +224,7 @@ export default function Home() {
                 <div className="relative">
                   <motion.div
                   
-                    className="max-w-[70%]">
+                    className="max-w-[70%] -mb-[35px]">
                     <GrowthIcon />
                   </motion.div>
                   <div className="-mt-5 flex w-full justify-between">
@@ -297,12 +299,16 @@ export default function Home() {
               </div>
             </div>
 
-            <h5 className="text-xl">Widget Control</h5>
+            <div className="space-y-5 pb-5">
+              <h5 className="text-xl text-center">Widget Control</h5>
+              <div className="text-[#b1b1b1] text-center text-sm">
+                <p>Reports provided are comprehensive overview </p>
+                <p>of important aspects of web analytics</p>
+              </div>
+              
+            </div>
 
-          <div className="text-[#b1b1b1] text-center text-sm">
-                      <p>Reports provided are comprehensive overview </p>
-                      <p>of important aspects of web analytics</p>
-          </div>
+
 
           </div>
 
@@ -476,16 +482,16 @@ export default function Home() {
       <div className="w-full grid grid-cols-2 gap-x-3">
         <div className="px-20 py-5 bg-wht rounded-2xl  border border-gray-200 flex flex-col gap-y-10 items-center w-full">
           <div className="flex w-full mx-auto items-center justify-center">
-            <div className="w-[45%] h-[250px] bg-white rounded-2xl py-5 px-10 relative space-y-5 shadow text-center">
+            <div className="w-[47%] h-[250px] bg-white rounded-2xl py-5 px-10 relative space-y-5 shadow text-center">
               <p className="text-xs">Conversion rate</p>
-              <div className="relative bg-accent w-full rounded-xl p-5 text-center">
+              <div className="relative bg-accent w-full flex items-center justify-center rounded-xl p-5 text-center">
                 <div className="absolute w-6 h-6 rounded-full p-3 bg-wht flex items-center -top-[10px] -left-[10px]"></div>
-                <span className="text-6xl">2,3%</span>
+                <span className="text-4xl font-bold">2,3%</span>
               </div>
               <p className="text-[9px] text-[#b1b1b1]">Percentage of webiste visitors</p>
 
             </div>
-            <div className="w-[45%] h-[250px] bg-white rounded-2xl p-5 shadow mt-16 -ml-5 z-10 flex flex-col justify-between">
+            <div className="w-[47%] h-[250px] bg-white rounded-2xl p-5 shadow mt-16 -ml-5 z-10 flex flex-col justify-between">
               <div>
                 <p>Sales revenue</p>
                 <p className="text-xl">$ 131,2K</p>
