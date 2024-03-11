@@ -57,25 +57,78 @@ export default function Home() {
           <div className="col-span-3">
             <div className="ml-16 flex gap-x-5 items-center ">
               <div className="flex">
-                <div className="bg-[#f4f4f4] p-6 size-20  flex items-center justify-center rounded-full"><Bolt /></div>
-                <div className="bg-primary -ml-3 p-6 size-20 flex items-center justify-center rounded-full"><Nodes /></div>
+                <motion.div 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.3 }}
+                  variants={{
+                    visible: { opacity: 1, scale: 1 },
+                    hidden: { opacity: 0, scale: 0 }
+                  }}
+                className="bg-[#f4f4f4] p-6 size-20  flex items-center justify-center rounded-full"><Bolt /></motion.div>
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                  variants={{
+                    visible: { opacity: 1, scale: 1 },
+                    hidden: { opacity: 0, scale: 0 }
+                  }} 
+                  className="bg-primary -ml-3 p-6 size-20 flex items-center justify-center rounded-full"><Nodes /></motion.div>
               </div>
-              <h2 className="text-8xl"> <span></span>Analytics </h2>
+              {/* <h2 className="text-8xl"> <span></span>Analytics </h2> */}
+              <AnimatedTitle text="Analytics" />
             </div>
-            
-            <h2 className="text-8xl"> that <span className="text-[#b1b1b1]">helps you</span></h2>
+            <AnimatedTitle text="that helps you" alt />
+
+            {/* <h2 className="text-8xl"> that <span className="text-[#b1b1b1]">helps you</span></h2> */}
           </div>
-          <div className="col-span-2 relative h-full bg-accent min-w-[40%] p-7 rounded-2xl" style={{background: "url('/laptop-and-analytics2.png')", backgroundSize: "cover"}}>
-            <div className="absolute -top-3 -left-4 size-9 p-3 bg-primary shadow-xl flex items-center justify-center rounded-full">
-              <Play />
-            </div>
-          </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+                ease: "easeInOut",
+                duration: 1,
+                delay: 0.4, 
+            }}
+
+            className="col-span-2 relative h-full bg-accent min-w-[40%] p-7 rounded-2xl" 
+            style={{background: "url('/laptop-and-analytics2.png')", backgroundSize: "cover"}}
+          >
+            <motion.div
+
+              className="absolute -top-3 -left-4 size-9 p-3 bg-primary shadow-xl flex items-center justify-center rounded-full"
+            >
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ 
+                    ease: "easeInOut",
+                    duration: 0.5,
+                }} 
+              >
+                <Play />
+              </motion.span>
+            </motion.div>
+          </motion.div>
         </div>
         <div className="grid grid-cols-5 !mt-3">
           <div className="col-span-1"></div>
         <div className="col-span-4 justify-end flex items-center gap-x-3">
-          <span className="text-8xl">shape</span> 
-          <div className="bg-accent size-20 p-2 rounded-full flex items-center justify-center">       
+
+          <AnimatedTitle text="shape" />
+
+          {/* <span className="text-8xl">shape</span>  */}
+          <motion.div 
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+                ease: "easeInOut",
+                duration: 0.6,
+            }} 
+            className="bg-accent size-20 p-2 rounded-full flex items-center justify-center">       
             <Image
               className="relative"
               src="/arrows.png"
@@ -84,8 +137,9 @@ export default function Home() {
               height={50}
               priority
             />
-          </div> 
-        <span className="text-8xl">the future</span>
+          </motion.div> 
+        {/* <span className="text-8xl">the future</span> */}
+        <AnimatedTitle text="the future" />
         </div>
         </div>
       </section>
@@ -97,17 +151,22 @@ export default function Home() {
 
         <div className="flex items-center justify-between">
           <motion.h4 
-            initial={{ y: "200px" }}
-            animate={isSkillRefInView ? { y: 0 } : {}}
+            initial={{ y: "20px", opacity: 0 }}
+            animate={isSkillRefInView ? { y: 0, opacity: 1 } : {}}
             transition={{ delay: 0.2 }}
             className="text-5xl w-[50%]"
           >
               Your key to strategic success through analytics 
           </motion.h4>
 
-          <p className="w-[25%]">
+          <motion.p
+            initial={{ y: "20px", opacity: 0 }}
+            animate={isSkillRefInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ delay: 0.3 }} 
+            className="w-[25%] text-gray-500"
+          >
             Ready for exciting, instanenous <br /> all-accessible insights in real time?
-          </p>
+          </motion.p>
         </div>
 
         <div className="flex gap-x-5">
@@ -237,7 +296,7 @@ export default function Home() {
             <span className="self-end">upto </span>
             <span className="text-8xl">45%</span>
           </div>
-          <div>
+          <div className=" text-gray-500">
             Increase your analytics efficiency by up to 45%. Unique algorithms provide insights from 
             data, reduce time for analysis and save time for making important, informed decisions.
           </div>
