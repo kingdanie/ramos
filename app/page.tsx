@@ -7,6 +7,7 @@ import Nodes  from "./component/nodes";
 import StackIcon from "./component/stackIcon";
 import UpArrow from "./component/upArrow";
 import AnimatedTitle from './component/staggeringTitle'
+import GrowthIcon from './component/growth'
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
@@ -199,7 +200,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-wht rounded-2xl min-w-[33%] flex flex-col py-3 px-5 gap-y-2">
+                  <div className="bg-wht rounded-2xl min-w-[33%] flex flex-col flex-1 py-3 px-5 gap-y-2">
                     <span className="text-xs">Visitors</span>
                     <div className="bg-[#e3e3e3] rounded">
                       <div className="w-[30%] bg-green-600 p-[0.09rem] rounded"></div>
@@ -218,21 +219,38 @@ export default function Home() {
                 <div className="flex flex-col gap-y-3 border border-[#e6e4e4] rounded-2xl  p-3">
                   <p className="text-xs">Visit statistics</p>
 
-                  <div className="flex w-full">
+                <div className="relative">
+                  <motion.div
+                  
+                    className="max-w-[70%]">
+                    <GrowthIcon />
+                  </motion.div>
+                  <div className="-mt-5 flex w-full justify-between">
+                      <div className="flex gap-x-5 w-full">
+                      <p className="text-gray-400 text-[10px] self-end">Jan</p>
+                      <p className="text-gray-400 text-[10px] self-end">Feb</p>
+                      <p className="text-gray-400 text-[10px] self-end">Mar</p>
+                      <p className="text-gray-400 text-[10px] self-end">Apr</p>
+                      <p className="text-gray-400 text-[10px] self-end">May</p>
 
-                  <div className="bg-primary text-white rounded-2xl w-[40%] flex py-3 px-3 gap-x-2">
-                    <div className="flex flex-col gap-y-2">
-                      <span className="text-[0.5rem]">Rate</span>
-                      {/* <span className="text-lg">58   %</span> */}
-                      <div><motion.span whileInView='true' animate={statisticsAnimation} className="text-md">{roundedStatistics}</motion.span><span className="text-md">%</span></div>
+                      </div>
 
-                    </div>
 
-                    <div className="flex w-[30%]">
-                      <span className="text-[9px] self-start text-green-500">+14%</span>
-                    </div>
+                      <div className="bg-primary text-white rounded-2xl w-[40%] flex py-3 px-3 gap-x-2">
+                        <div className="flex flex-col gap-y-2">
+                          <span className="text-[0.5rem]">Rate</span>
+                          {/* <span className="text-lg">58   %</span> */}
+                          <div><motion.span whileInView='true' animate={statisticsAnimation} className="text-md">{roundedStatistics}</motion.span><span className="text-md">%</span></div>
+
+                        </div>
+
+                        <div className="flex w-[30%]">
+                          <span className="text-[9px] self-start text-green-500">+14%</span>
+                        </div>
+                      </div>
                   </div>
-                  </div>
+                </div>
+
                   
                 </div>
               </div>
