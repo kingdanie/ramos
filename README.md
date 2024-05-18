@@ -1,3 +1,7 @@
+
+<img width="1429" alt="ramos" src="https://github.com/kingdanie/ramos/assets/52611355/5a25cfc7-cff9-4f55-a618-b7ff5a38c4b5">
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
